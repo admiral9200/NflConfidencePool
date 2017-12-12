@@ -1,0 +1,30 @@
+table.results {
+  overflow: hidden;
+  border-collapse: collapse;
+  display: table-caption;
+  border: 1px solid black;
+}
+
+table.results tr:hover {
+  background-color: silver;
+}
+
+table.results td {
+  white-space: nowrap;
+}
+
+table.results td, table.results th {
+  position: relative;
+  border: 1px solid gray;
+}
+table.results td:hover::after,
+table.results th:hover::after {
+  content: "";
+  position: absolute;
+  background-color: silver;
+  left: 0;
+  top: -5000px;
+  height: 10000px;
+  width: 100%;
+  z-index: -1;
+}

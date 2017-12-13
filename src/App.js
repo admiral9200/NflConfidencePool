@@ -20,7 +20,7 @@ class App extends Component {
     games: {},
     picks: {},
     numsUsed: [],
-    selectedWeek: {value:"10", label: "10"},
+    selectedWeek: {value:"15", label: "15"},
     currentUser: null,
     loading: false,
     errors: []
@@ -36,7 +36,7 @@ class App extends Component {
         var picksRef = firebase.database().ref(picksPath);
         this.setState({currentUser});
         this.listenForPicks(picksRef);
-        console.log("User logged in: " + user.uid);
+        console.log("User logged in.");
       } else {
         this.setState({ currentUser: null });
       }
@@ -113,7 +113,6 @@ class App extends Component {
 
   pushError(error) {
     const errors = this.state.errors.concat(error);
-    console.log(errors);
     this.setState({ errors });
   }
 
@@ -144,7 +143,6 @@ class App extends Component {
     const numsUsed = this.state.numsUsed.slice();
 
     var maxNum = Object.keys(this.state.games).length;
-    console.log("Max num is: " + maxNum);
 
     var errors = [];
     for (var i = 0; i < numsUsed.length; i++) {
@@ -251,7 +249,6 @@ class App extends Component {
       await firebase.auth().signOut()
         .then(() => {
           console.log("logged Out!");
-          console.log(this.state.currentUser);
         });
     } catch (error) {
       console.log('log out error');

@@ -14,15 +14,12 @@ class ResultsPage extends Component {
   }
 
   componentWillReceiveProps(newProps) {
-    console.log("old week " + this.props.week);
-    console.log("new week " + newProps.week);
     if (this.props.week !== newProps.week) {
       this.fetchResults(newProps.week)
     }
   }
 
   fetchResults(week) {
-    console.log('fetching results for week ' + week);
     var resultsRef = firebase.database().ref('/results/2017/' + week +
       '/users/');
 
@@ -49,7 +46,6 @@ class ResultsPage extends Component {
     try {
       var user = {};
       await firebase.database().ref('/users/profiles').once('value').then((snap) => {
-        console.log(snap.exportVal());
         user = snap.exportVal();
       });
       return user;
@@ -64,13 +60,11 @@ class ResultsPage extends Component {
     const games = this.props.games;
     var htmlResults = [];
 
-    console.log(games);
     Object.keys(users).forEach((user) => {
       var userRow = [];
       var totalScore = 0;
       userRow.push(<td key={user}>{users[user].name}</td>);
 
-      console.log(usersResults[user]);
       //if (Object.keys(usersResults).length > 0) {
       Object.keys(games).forEach((gameId) => {
         var result = '';

@@ -1,0 +1,30 @@
+{
+  "rules": {
+    "games": {
+      ".read": true,
+      ".write": false
+    },
+    "results": {
+      ".read": true,
+      ".write": false
+    },
+    "users": {
+      "profiles": {
+        ".read": true,
+        ".write": false,
+        "$uid": {
+          ".read": true,
+          ".write": "$uid === auth.uid"
+        }
+      },
+      "$uid":{
+        "$week":{
+          "picks":{
+            ".read": "$uid === auth.uid",
+            ".write": "$uid === auth.uid"
+          }
+        }
+      }
+    }
+  }
+}

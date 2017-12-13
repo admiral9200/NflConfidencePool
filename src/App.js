@@ -235,8 +235,8 @@ class App extends Component {
         gameId= {gId}
         homeTeam = {game.homeTeam}
         awayTeam = {game.awayTeam}
-        startTime = {'6:00 PM'}//{game.startTime}
-        date = {'20171230'}//{game.date}
+        startTime = {game.startTime}
+        date = {game.date}
         changeNumberUsed = {this.changeNumberUsed.bind(this)}
         changePickObject = {this.changePickObject.bind(this)}
         gamePick = {this.state.picks[gId]}

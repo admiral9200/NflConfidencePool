@@ -21,7 +21,6 @@ class LoginForm extends Component {
               password: '',
               loading: false});
           });
-        console.log("Logged In!");
     } catch (error) {
       console.log(error.toString())
     }
@@ -30,8 +29,6 @@ class LoginForm extends Component {
   async signup() {
 
     const { email, password } = this.state;
-    console.log(email);
-    console.log(password);
 
     try {
       await firebase.auth()
@@ -50,7 +47,6 @@ class LoginForm extends Component {
             password: '',
             loading: false});
         });
-      console.log("Account created");
     } catch (error) {
       console.log(error.toString());
     }

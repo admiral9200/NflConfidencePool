@@ -10,12 +10,12 @@ class GameCard extends Component {
   }
 
   componentWillMount() {
-    if (this.checkGameIsOver(this.props.startTime, this.props.date))
+    if (this.checkGameHasStarted(this.props.startTime, this.props.date))
       this.setState({gameIsOver: true});
   }
 
   onValueChange(e) {
-    if (this.checkGameIsOver(this.props.startTime, this.props.date)) {
+    if (this.checkGameHasStarted(this.props.startTime, this.props.date)) {
       this.setState({gameIsOver: true});
       return;
     }
@@ -37,6 +37,9 @@ class GameCard extends Component {
   }
 
   formatGameTimeHeader(time, date) {
+    //gameTime format is two seperate strings, which have been scraped from nfl.com
+    //this is required to convert them to a proper datetime object using moment,
+    //and format it nicely for the user
     const dateToFormat = date + ' ' + time;
     const momentObj = (momentjs.tz(dateToFormat, "YYYYMMDD hh:mmAA", "America/New_York"));
     const momentDate = <Moment format="ddd MMM D">{momentObj}</Moment>
@@ -44,11 +47,12 @@ class GameCard extends Component {
     return (<tr>
               <th>{momentDate}</th>
               <th>{momentTime}</th>
-              <th>{this.checkGameIsOver(time, date) && time !=='FINAL' ? "FINAL" : ""}</th>
+              <th>{this.checkGameHasStarted(time, date) && time !=='FINAL' ? "FINAL" : ""}</th>
             </tr>)
   }
 
-  checkGameIsOver(time, date) {
+  checkGameHasStarted(time, date) {
+    //checks whether the game has started or not
     const dateToFormat = date + ' ' + time;
     if (momentjs.tz(dateToFormat, "YYYYMMDD hh:mmAA", "America/New_York") <= momentjs())
       return true;
@@ -56,13 +60,26 @@ class GameCard extends Component {
   }
 
   isDisabled(teamGuess, teamChar, startTime, date) {
-    return ((this.state.hasGuess && teamGuess === teamChar) || this.checkGameIsOver(startTime, date)) ? "disabled" : "";
+    /* The input field will be disabled for two reasons:
+     * 1. The game has started, and so the user can no longer enter picks (this is checked during the
+          input fields on change function, and during rendered)
+     * 2. The game already has a pick for the other team. This is to protect the user from picking both teams,
+     *    by accident or on purpose.
+     */
+    return ((this.state.hasGuess && teamGuess === teamChar) || this.checkGameHasStarted(startTime, date)) ? "disabled" : "";
   }
 
   render() {
     const { teamGuess, guessValue } = this.props.gamePick;
     const { homeTeam, awayTeam, date, startTime } = this.props;
 
+    /* There are a handful of style changes related to the users selection of
+     * picks / teams. When a selection is made for one team (for example the
+     * home team), the input field for the opposite team will be disabled (for
+     * example the away team), and a background color will be added to the two
+     * teams to represent your seleciton (Green for the team they expect to win;
+     * red for the team they expect to lose).
+     */
     return (
       <table style={styles.cardStyle}>
         <thead>
@@ -104,7 +121,7 @@ class GameCard extends Component {
                 type="text"
                 value={(teamGuess === 'H') ? guessValue : ""}
                 style={{width:"50px"}}
-                disabled={((this.state.hasGuess && teamGuess === 'A') || this.checkGameIsOver(startTime, date)) ? "disabled" : ""}
+                disabled={((this.state.hasGuess && teamGuess === 'A') || this.checkGameHasStarted(startTime, date)) ? "disabled" : ""}
                 onChange={(e) => this.onValueChange(e) }
               />
             </td>

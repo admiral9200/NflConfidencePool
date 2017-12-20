@@ -36,19 +36,19 @@ At the end of the year, the overall winner wins the majority of the prize pool.
 
 ```
 public
-└── index.html              #######Html markup for rendering js scripts
+└── index.html              #Html markup for rendering js scripts
 src
 ├── Components
-│   ├── GameCard.js         #######Table for individual games on pick page
-│   ├── LoginForm.js        #######Login inputs
-│   ├── PicksPage.js        #######Main page for picks on the app
-│   ├── PickTracker.js      #######Component to track (un)used picks in the app
-│   ├── ProfilePage.js      #######Page to allow user to change profile
-│   ├── ResultsPage.js      #######Page to show results
+│   ├── GameCard.js         #Table for individual games on pick page
+│   ├── LoginForm.js        #Login inputs
+│   ├── PicksPage.js        #Main page for picks on the app
+│   ├── PickTracker.js      #Component to track (un)used picks in the app
+│   ├── ProfilePage.js      #Page to allow user to change profile
+│   ├── ResultsPage.js      #Page to show results
 │   ├── ResultsTable.css
-│   └── WeeksDropDown.js    #######Week selection drop-down component
+│   └── WeeksDropDown.js    #Week selection drop-down component
 └── Scripts
-    └── scraper.js          #######scraper to pull games and results to db
+    └── scraper.js          #scraper to pull games and results to db
 ├── App.css
 ├── App.js
 ├── App.test.js

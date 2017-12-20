@@ -7,6 +7,8 @@ order to send out results. With 50+ people participating in the pool, this
 seemed like an unfair ask of the manager. So, I put together this app to help
 automate the process.
 
+A demo for anyone to use can be found [here](https://nfl-confidence-app.firebaseapp.com/).
+
 # Tools Used
 
 The bulk of the app is built in React, with a single script built to run using

@@ -34,6 +34,7 @@ At the end of the year, the overall winner wins the majority of the prize pool.
 
 # File Structure:
 
+```
 public
 └── index.html              #######Html markup for rendering js scripts
 src
@@ -54,3 +55,4 @@ src
 ├── index.css
 ├── index.js
 └── registerServiceWorker.js
+```

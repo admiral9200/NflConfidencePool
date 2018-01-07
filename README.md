@@ -1,3 +1,5 @@
+# THERE IS A REDUX-IFIED VERSION AVAILABLE [HERE](https://github.com/hobz-/NflConfidenceRedux)
+
 # Overview
 
 This is a tool I developed to help with an in-house NFL pool from a previous
